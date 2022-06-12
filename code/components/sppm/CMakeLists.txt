@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.18)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# 设置名称， 会在"/components”文件夹下生成  名称.dll
+set(MY_COMPONENT_NAME "SPPM")
+
+file(GLOB_RECURSE COMP_HEADER_FILES "./include/*.h" "./include/*.hpp")
+source_group("Header Files" FILES ${COMP_HEADER_FILES})
+file(GLOB_RECURSE COMP_SOURCE_FILES "./src/*.cpp")
+add_library(${MY_COMPONENT_NAME} SHARED "${COMP_SOURCE_FILES}" "${COMP_HEADER_FILES}")
+target_link_libraries(${MY_COMPONENT_NAME} NRServer)
+
+include_directories("./include")
